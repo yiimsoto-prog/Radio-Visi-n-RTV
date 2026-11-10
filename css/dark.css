@@ -1,0 +1,275 @@
+/* ==============================================================
+   DARK.CSS - SISTEMA DE VARIABLES CSS PARA MODO OSCURO MODERNO
+   RadioVisión RTV - Limpio, Mantenible y de Alto Rendimiento
+   ============================================================== */
+
+/* Variables reactivas al activar la clase .dark */
+html.dark, body.dark-theme {
+  --bg-page: #060c1d;
+  --bg-surface: #0b152d;
+  --bg-surface-subtle: #0f1c3d;
+  --bg-card: #0b152d;
+  --bg-card-hover: #121f42;
+  --bg-nav: rgba(6, 12, 29, 0.95);
+  
+  --text-main: #f1f5f9;
+  --text-heading: #f8fafc;
+  --text-muted: #cbd5e1;
+  --text-subtle: #94a3b8;
+  
+  --border-light: #1d2d54;
+  --border-subtle: #233563;
+  --border-accent: rgba(250, 204, 21, 0.3);
+}
+
+/* Aplicación global del modo oscuro */
+html.dark, html.dark body, body.dark-theme {
+  background-color: var(--bg-page) !important;
+  color: var(--text-main) !important;
+}
+
+/* Barra de navegación en modo oscuro */
+html.dark .glass-nav, body.dark-theme .glass-nav {
+  background: var(--bg-nav) !important;
+  border-color: rgba(30, 45, 84, 0.8) !important;
+}
+
+/* Hero en modo oscuro */
+html.dark .hero-bg, body.dark-theme .hero-bg {
+  background: linear-gradient(135deg, rgba(6, 12, 29, 0.96) 0%, rgba(10, 19, 44, 0.94) 100%), 
+              url('https://images.unsplash.com/photo-1510936111840-65e151ad71bb?auto=format&fit=crop&q=75&fm=webp&w=1920') center/cover !important;
+}
+
+html.dark .hero-bg > div:first-child, body.dark-theme .hero-bg > div:first-child {
+  background: linear-gradient(to bottom, rgba(6, 12, 29, 0.75), rgba(6, 12, 29, 0.95), #060c1d) !important;
+}
+
+/* Gradientes específicos para todas las secciones en modo oscuro */
+html.dark .section-culto, body.dark-theme .section-culto {
+  background: radial-gradient(circle at 85% 15%, rgba(220, 38, 38, 0.14) 0%, transparent 45%),
+              linear-gradient(135deg, #060c1d 0%, #150d1d 50%, #060c1d 100%) !important;
+}
+html.dark .section-primeros-pasos, body.dark-theme .section-primeros-pasos {
+  background: radial-gradient(circle at 80% 20%, rgba(217, 119, 6, 0.14) 0%, transparent 45%),
+              linear-gradient(135deg, #060c1d 0%, #0c1a3b 50%, #060c1d 100%) !important;
+}
+html.dark .section-programacion, body.dark-theme .section-programacion {
+  background: radial-gradient(circle at 75% 20%, rgba(13, 148, 136, 0.14) 0%, transparent 45%),
+              linear-gradient(135deg, #060c1d 0%, #071f2b 50%, #060c1d 100%) !important;
+}
+html.dark .section-doctrinas, body.dark-theme .section-doctrinas {
+  background: radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.14) 0%, transparent 45%),
+              linear-gradient(135deg, #060c1d 0%, #190c33 50%, #060c1d 100%) !important;
+}
+html.dark .section-informacion, body.dark-theme .section-informacion {
+  background: radial-gradient(circle at 85% 15%, rgba(37, 99, 235, 0.14) 0%, transparent 45%),
+              linear-gradient(135deg, #060c1d 0%, #0a1838 50%, #060c1d 100%) !important;
+}
+html.dark .section-podcasts, body.dark-theme .section-podcasts {
+  background: radial-gradient(circle at 80% 20%, rgba(225, 29, 72, 0.14) 0%, transparent 45%),
+              linear-gradient(135deg, #060c1d 0%, #200b1a 50%, #060c1d 100%) !important;
+}
+html.dark .section-biblia, body.dark-theme .section-biblia {
+  background: radial-gradient(circle at 75% 20%, rgba(202, 138, 4, 0.14) 0%, transparent 50%),
+              linear-gradient(135deg, #060c1d 0%, #121a30 50%, #060c1d 100%) !important;
+}
+html.dark .section-oracion, body.dark-theme .section-oracion {
+  background: radial-gradient(circle at 80% 20%, rgba(5, 150, 105, 0.14) 0%, transparent 45%),
+              linear-gradient(135deg, #060c1d 0%, #081f1c 50%, #060c1d 100%) !important;
+}
+html.dark .section-nosotros, body.dark-theme .section-nosotros {
+  background: radial-gradient(circle at 85% 15%, rgba(13, 148, 136, 0.14) 0%, transparent 45%),
+              linear-gradient(135deg, #060c1d 0%, #0c1b2b 50%, #060c1d 100%) !important;
+}
+html.dark .section-radiovision, body.dark-theme .section-radiovision {
+  background: radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.14) 0%, transparent 45%),
+              linear-gradient(135deg, #060c1d 0%, #18140a 50%, #060c1d 100%) !important;
+}
+html.dark .section-eventos, body.dark-theme .section-eventos {
+  background: radial-gradient(circle at 85% 15%, rgba(37, 99, 235, 0.14) 0%, transparent 45%),
+              linear-gradient(135deg, #060c1d 0%, #0b1836 50%, #060c1d 100%) !important;
+}
+html.dark .section-misionero, body.dark-theme .section-misionero {
+  background: radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.14) 0%, transparent 45%),
+              linear-gradient(135deg, #060c1d 0%, #091a24 50%, #060c1d 100%) !important;
+}
+html.dark .section-ministerios, body.dark-theme .section-ministerios {
+  background: radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.14) 0%, transparent 45%),
+              linear-gradient(135deg, #060c1d 0%, #111438 50%, #060c1d 100%) !important;
+}
+html.dark .section-galeria, body.dark-theme .section-galeria {
+  background: radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.14) 0%, transparent 45%),
+              linear-gradient(135deg, #060c1d 0%, #081a2e 50%, #060c1d 100%) !important;
+}
+html.dark .section-biblioteca, body.dark-theme .section-biblioteca {
+  background: radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.14) 0%, transparent 45%),
+              linear-gradient(135deg, #060c1d 0%, #170d2b 50%, #060c1d 100%) !important;
+}
+html.dark .section-soy-nuevo, body.dark-theme .section-soy-nuevo {
+  background: radial-gradient(circle at 85% 15%, rgba(16, 185, 129, 0.14) 0%, transparent 45%),
+              linear-gradient(135deg, #060c1d 0%, #081d19 50%, #060c1d 100%) !important;
+}
+html.dark .section-ubicanos, body.dark-theme .section-ubicanos {
+  background: radial-gradient(circle at 80% 20%, rgba(239, 68, 68, 0.14) 0%, transparent 45%),
+              linear-gradient(135deg, #060c1d 0%, #170c14 50%, #060c1d 100%) !important;
+}
+html.dark .section-sedes, body.dark-theme .section-sedes {
+  background: radial-gradient(circle at 82% 18%, rgba(16, 185, 129, 0.14) 0%, transparent 45%),
+              radial-gradient(circle at 18% 82%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+              linear-gradient(135deg, #060c1d 0%, #071b1a 50%, #060c1d 100%) !important;
+}
+
+/* Adaptación universal para tarjetas, textos y bordes mediante variables */
+html.dark .bg-white, body.dark-theme .bg-white {
+  background-color: var(--bg-surface) !important;
+  border-color: var(--border-light) !important;
+  color: var(--text-main) !important;
+}
+html.dark .bg-white\/95, body.dark-theme .bg-white\/95 {
+  background-color: rgba(11, 21, 45, 0.95) !important;
+  border-color: var(--border-light) !important;
+}
+html.dark .bg-slate-50, body.dark-theme .bg-slate-50,
+html.dark .bg-slate-100, body.dark-theme .bg-slate-100 {
+  background-color: rgba(11, 21, 45, 0.75) !important;
+  border-color: var(--border-light) !important;
+  color: var(--text-main) !important;
+}
+html.dark .text-slate-900, body.dark-theme .text-slate-900 {
+  color: var(--text-heading) !important;
+}
+html.dark .text-slate-800, body.dark-theme .text-slate-800 {
+  color: #e2e8f0 !important;
+}
+html.dark .text-slate-700, body.dark-theme .text-slate-700 {
+  color: #cbd5e1 !important;
+}
+html.dark .text-slate-600, body.dark-theme .text-slate-600 {
+  color: var(--text-muted) !important;
+}
+html.dark .border-slate-200, body.dark-theme .border-slate-200,
+html.dark .border-slate-300, body.dark-theme .border-slate-300 {
+  border-color: var(--border-light) !important;
+}
+
+/* REGLAS DE ALTO CONTRASTE TIPOGRÁFICO EN MODO OSCURO */
+html.dark .text-amber-600, body.dark-theme .text-amber-600 {
+  color: #fbbf24 !important; /* Dorado cálido y luminoso */
+}
+html.dark .text-amber-700, body.dark-theme .text-amber-700 {
+  color: #fde047 !important; /* Amarillo oro brillante */
+}
+html.dark .text-amber-800, body.dark-theme .text-amber-800 {
+  color: #fcd34d !important; /* Ámbar suave visible */
+}
+html.dark .text-emerald-700, body.dark-theme .text-emerald-700,
+html.dark .text-emerald-800, body.dark-theme .text-emerald-800 {
+  color: #4ade80 !important; /* Verde esmeralda luminoso */
+}
+html.dark .text-red-700, body.dark-theme .text-red-700,
+html.dark .text-red-800, body.dark-theme .text-red-800 {
+  color: #f87171 !important; /* Rojo claro visible */
+}
+
+/* PRESERVACIÓN DE TEXTO OSCURO INTENCIONAL EN BOTONES SÓLIDOS AMARILLOS */
+html.dark .text-slate-950,
+body.dark-theme .text-slate-950,
+html.dark button.bg-amber-500:not([class*="/"]),
+html.dark button.bg-yellow-500:not([class*="/"]),
+html.dark button.bg-yellow-400:not([class*="/"]),
+html.dark a.bg-amber-500:not([class*="/"]),
+html.dark a.bg-yellow-500:not([class*="/"]) {
+  color: #020617 !important;
+}
+html.dark .text-slate-950 *,
+body.dark-theme .text-slate-950 *,
+html.dark button.bg-amber-500:not([class*="/"]) *,
+html.dark button.bg-yellow-500:not([class*="/"]) *,
+html.dark button.bg-yellow-400:not([class*="/"]) *,
+html.dark a.bg-amber-500:not([class*="/"]) *,
+html.dark a.bg-yellow-500:not([class*="/"]) * {
+  color: #020617 !important;
+}
+
+/* BOTONES Y BADGES TRANSLÚCIDOS DE COLOR ÁMBAR EN MODO OSCURO:
+   Garantizar texto dorado luminoso y legible (#fde047 / #fbbf24) */
+html.dark button[class*="bg-amber-500/"],
+html.dark button[class*="bg-amber-400/"],
+html.dark button[class*="bg-yellow-500/"],
+html.dark a[class*="bg-amber-500/"],
+html.dark a[class*="bg-amber-400/"],
+html.dark a[class*="bg-yellow-500/"],
+html.dark span[class*="bg-amber-500/"],
+html.dark span[class*="bg-amber-400/"] {
+  color: #fde047 !important;
+}
+html.dark button[class*="bg-amber-500/"] *,
+html.dark button[class*="bg-amber-400/"] *,
+html.dark button[class*="bg-yellow-500/"] *,
+html.dark a[class*="bg-amber-500/"] *,
+html.dark a[class*="bg-amber-400/"] *,
+html.dark a[class*="bg-yellow-500/"] * {
+  color: #fde047 !important;
+}
+
+/* Transición a texto oscuro al hacer hover sobre botones translúcidos que cambian a fondo sólido */
+html.dark a[class*="bg-amber-500/"]:hover,
+html.dark a[class*="bg-amber-500/"]:hover *,
+html.dark button[class*="bg-amber-500/"]:hover,
+html.dark button[class*="bg-amber-500/"]:hover * {
+  color: #020617 !important;
+}
+
+/* FORMULARIOS EN MODO OSCURO (Inputs, Selects, Textareas) */
+html.dark input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]),
+html.dark select,
+html.dark textarea {
+  background-color: #060c1d !important;
+  border-color: #1e3260 !important;
+  color: #f8fafc !important;
+}
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #cbd5e1 !important; /* AAA sobre #060c1d */
+}
+html.dark .text-slate-400,
+html.dark .dark\:text-slate-400 {
+  color: #cbd5e1 !important;
+}
+html.dark select option {
+  background-color: #0b152d !important;
+  color: #f8fafc !important;
+}
+
+/* Reproductor flotante en modo oscuro */
+html.dark #audioBar, body.dark-theme #audioBar {
+  background-color: rgba(9, 17, 36, 0.96) !important;
+  border-color: #233563 !important;
+  color: #f1f5f9 !important;
+}
+
+/* Versículos de la biblia interactiva */
+html.dark .verse-item p, body.dark-theme .verse-item p {
+  color: #e2e8f0 !important;
+}
+html.dark .verse-item:hover, body.dark-theme .verse-item:hover {
+  background-color: rgba(234, 179, 8, 0.12) !important;
+  border-color: rgba(234, 179, 8, 0.4) !important;
+}
+
+/* Scrollbars en modo oscuro */
+html.dark ::-webkit-scrollbar-track, body.dark-theme ::-webkit-scrollbar-track {
+  background: #060c1d;
+}
+html.dark ::-webkit-scrollbar-thumb, body.dark-theme ::-webkit-scrollbar-thumb {
+  background: #1d2d54;
+}
+
+/* Resaltado de versículos seleccionados en modo oscuro */
+html.dark .verse-highlight, body.dark-theme .verse-highlight {
+  background-color: rgba(234, 179, 8, 0.22) !important;
+  border-color: rgba(250, 204, 21, 0.7) !important;
+  box-shadow: 0 0 15px rgba(234, 179, 8, 0.25) !important;
+}
+
+

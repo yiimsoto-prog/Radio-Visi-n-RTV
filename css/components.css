@@ -1,0 +1,158 @@
+/* ==============================================================
+   COMPONENTS.CSS - ESTILOS ESPECÍFICOS DE COMPONENTES
+   RadioVisión RTV - Calendario, CRM, Gradientes, Modales y Media
+   ============================================================== */
+
+/* SECTION GRADIENTS (MODO CLARO - Base Slate-50 Neutra y Elegante) */
+.section-culto {
+  background: radial-gradient(circle at 85% 15%, rgba(239, 68, 68, 0.05) 0%, transparent 45%),
+              radial-gradient(circle at 15% 85%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
+              linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+}
+.section-primeros-pasos {
+  background: radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.05) 0%, transparent 45%),
+              radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+              linear-gradient(135deg, #f8fafc 0%, #fcfdfa 50%, #f1f5f9 100%);
+}
+.section-programacion {
+  background: radial-gradient(circle at 75% 20%, rgba(20, 184, 166, 0.05) 0%, transparent 45%),
+              radial-gradient(circle at 25% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+              linear-gradient(135deg, #f8fafc 0%, #f4fbf9 50%, #f1f5f9 100%);
+}
+.section-doctrinas {
+  background: radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.05) 0%, transparent 45%),
+              radial-gradient(circle at 20% 80%, rgba(245, 158, 11, 0.04) 0%, transparent 50%),
+              linear-gradient(135deg, #f8fafc 0%, #faf8ff 50%, #f1f5f9 100%);
+}
+.section-informacion {
+  background: radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.05) 0%, transparent 45%),
+              radial-gradient(circle at 15% 85%, rgba(245, 158, 11, 0.04) 0%, transparent 50%),
+              linear-gradient(135deg, #f8fafc 0%, #f4f8fe 50%, #f1f5f9 100%);
+}
+.section-podcasts {
+  background: radial-gradient(circle at 80% 20%, rgba(244, 63, 94, 0.05) 0%, transparent 45%),
+              radial-gradient(circle at 20% 80%, rgba(217, 119, 6, 0.04) 0%, transparent 50%),
+              linear-gradient(135deg, #f8fafc 0%, #fdf4f5 50%, #f1f5f9 100%);
+}
+.section-biblia {
+  background: radial-gradient(circle at 75% 20%, rgba(245, 158, 11, 0.06) 0%, transparent 50%),
+              radial-gradient(circle at 25% 80%, rgba(37, 99, 235, 0.05) 0%, transparent 55%),
+              linear-gradient(135deg, #f8fafc 0%, #fefcf4 50%, #f1f5f9 100%);
+}
+.section-oracion {
+  background: radial-gradient(circle at 75% 25%, rgba(34, 197, 94, 0.05) 0%, transparent 45%),
+              radial-gradient(circle at 25% 75%, rgba(245, 158, 11, 0.04) 0%, transparent 50%),
+              linear-gradient(135deg, #f8fafc 0%, #f4fdf7 50%, #f1f5f9 100%);
+}
+.section-nosotros {
+  background: radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.05) 0%, transparent 45%),
+              radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+              linear-gradient(135deg, #f8fafc 0%, #f4f6fe 50%, #f1f5f9 100%);
+}
+.section-galeria {
+  background: radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.05) 0%, transparent 45%),
+              linear-gradient(135deg, #f8fafc 0%, #f1f8fc 50%, #f1f5f9 100%);
+}
+.section-biblioteca {
+  background: radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 45%),
+              linear-gradient(135deg, #f8fafc 0%, #f7f4fc 50%, #f1f5f9 100%);
+}
+.section-soy-nuevo {
+  background: radial-gradient(circle at 85% 15%, rgba(16, 185, 129, 0.05) 0%, transparent 45%),
+              linear-gradient(135deg, #f8fafc 0%, #f2fcf6 50%, #f1f5f9 100%);
+}
+.section-radiovision {
+  background: radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.05) 0%, transparent 45%),
+              radial-gradient(circle at 15% 85%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
+              linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+}
+.section-eventos {
+  background: radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 45%),
+              radial-gradient(circle at 20% 80%, rgba(245, 158, 11, 0.04) 0%, transparent 50%),
+              linear-gradient(135deg, #f8fafc 0%, #f6f8fd 50%, #f1f5f9 100%);
+}
+.section-misionero {
+  background: radial-gradient(circle at 75% 20%, rgba(245, 158, 11, 0.05) 0%, transparent 45%),
+              radial-gradient(circle at 25% 80%, rgba(239, 68, 68, 0.04) 0%, transparent 50%),
+              linear-gradient(135deg, #f8fafc 0%, #fdf9f4 50%, #f1f5f9 100%);
+}
+.section-ministerios {
+  background: radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 45%),
+              radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.04) 0%, transparent 50%),
+              linear-gradient(135deg, #f8fafc 0%, #fbf8fe 50%, #f1f5f9 100%);
+}
+.section-ubicanos {
+  background: radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.05) 0%, transparent 45%),
+              linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+}
+.section-sedes {
+  background: radial-gradient(circle at 82% 18%, rgba(16, 185, 129, 0.06) 0%, transparent 45%),
+              radial-gradient(circle at 18% 82%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
+              linear-gradient(135deg, #f8fafc 0%, #f4fbf8 50%, #f1f5f9 100%);
+}
+
+/* ==============================================================
+   ESTILOS DEL CALENDARIO INTERACTIVO
+   ============================================================== */
+.cal-day-cell {
+  min-height: 52px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.cal-day-cell:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.cal-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  display: inline-block;
+}
+.cal-dot-culto {
+  background-color: #facc15;
+  box-shadow: 0 0 6px rgba(250, 204, 21, 0.6);
+}
+.cal-dot-evento {
+  background-color: #38bdf8;
+  box-shadow: 0 0 6px rgba(56, 189, 248, 0.6);
+}
+.cal-dot-today {
+  background-color: #4ade80;
+  box-shadow: 0 0 6px rgba(74, 222, 128, 0.6);
+}
+
+/* ==============================================================
+   CRM PASTORAL (SOY NUEVO)
+   ============================================================== */
+.crm-badge-nuevo {
+  background-color: rgba(234, 179, 8, 0.15);
+  color: #facc15;
+  border: 1px solid rgba(234, 179, 8, 0.3);
+}
+.crm-badge-contactado {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+.crm-badge-discipulado {
+  background-color: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+/* ==============================================================
+   REPRODUCTOR DE VIDEO DIRECTO NATIVO Y MODALES
+   ============================================================== */
+#activePodcastVideo {
+  max-height: 80vh;
+  object-fit: contain;
+  background-color: #000;
+  border-radius: 1rem;
+}
+
+.modal-backdrop-blur {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}

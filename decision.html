@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Registro de Decisiones en Culto | RadioVisión RTV & IMCOTNV</title>
+    <meta name="description" content="Formulario ministerial para registrar decisiones de fe, reconciliaciones y nuevos creyentes en el culto. Sincronización automática con Libro Excel y WhatsApp pastoral.">
+    <meta name="theme-color" content="#060c1d">
+
+    <!-- Script de Prevención de Parpadeo de Tema (FOUC) y Cuidado Visual -->
+    <script>
+        (function() {
+            try {
+                const saved = localStorage.getItem('rtv_theme');
+                const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (saved === 'dark' || (!saved && prefersDark)) {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.classList.add('dark-theme');
+                } else if (saved === 'light') {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.classList.remove('dark-theme');
+                }
+            } catch(e) {}
+        })();
+    </script>
+
+    <!-- Meta Tags para Descarga e Instalación Móvil (PWA) en Cualquier Celular -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Decisiones RTV">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- Tipografía y Estilos -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Cinzel:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                        serif: ['Cinzel', 'Georgia', 'serif']
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            500: '#0284c7',
+                            900: '#060c1d'
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/dark.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body class="bg-slate-50 dark:bg-[#060c1d] text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-amber-500 selection:text-black transition-colors duration-200">
+
+    <!-- Encabezado Móvil y Barra Superior Ergonómica -->
+    <header class="sticky top-0 z-50 bg-white/95 dark:bg-[#060c1d]/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800/80 px-4 py-3 transition-colors">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="flex items-center space-x-2.5 text-slate-700 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-400 transition-colors" title="Ir a la web principal">
+                    <img src="img/logo-radio.jpg" alt="RadioVisión RTV" class="w-9 h-9 rounded-xl border border-amber-500/40 object-cover shadow-sm">
+                    <div class="hidden sm:block">
+                        <span class="block text-xs font-black tracking-wider text-amber-600 dark:text-amber-400">RADIOVISIÓN RTV</span>
+                        <span class="block text-xs text-slate-500 dark:text-slate-400 font-medium">Iglesia IMCOTNV</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <!-- Selector Modo Noche / Día (Descanso Visual) -->
+                <button type="button" id="themeToggleBtn" onclick="toggleDarkModeDecision()" class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-amber-400 border border-slate-300 dark:border-slate-700 flex items-center justify-center text-sm transition-all shadow-sm cursor-pointer" title="Cambiar Modo Día / Noche para descanso visual">
+                    <i id="themeToggleIcon" class="fa-solid fa-moon text-amber-500"></i>
+                </button>
+
+                <!-- Selector de Idioma Español / Quechua -->
+                <button type="button" id="btnLangToggle" onclick="toggleLanguageDecision()" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-bold text-amber-700 dark:text-amber-400 border border-slate-300 dark:border-slate-700 flex items-center space-x-1.5 transition-all shadow-sm cursor-pointer" title="Cambiar Idioma">
+                    <i class="fa-solid fa-language text-sm"></i>
+                    <span id="langLabel">QU</span>
+                </button>
+
+                <!-- Botón Volver a la Web Principal -->
+                <a href="index.html" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-slate-300 dark:border-white/10 flex items-center space-x-1.5 transition-all shadow-sm">
+                    <i class="fa-solid fa-home text-xs"></i>
+                    <span class="hidden sm:inline">Portal Principal</span>
+                </a>
+
+                <!-- Botón Mejorado: Centro de Descargas e Informes -->
+                <button type="button" onclick="openCultoDownloadModal()" class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-emerald-400 text-white dark:text-slate-950 text-xs font-extrabold flex items-center space-x-1.5 shadow-md shadow-emerald-500/20 transition-all cursor-pointer" title="Descargar Libro Excel, CSV, WhatsApp o PDF">
+                    <i class="fa-solid fa-download"></i>
+                    <span class="hidden sm:inline">Descargar Excel / Reporte</span>
+                    <span class="sm:hidden">Descargar</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal Ergonómico -->
+    <main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
+
+        <!-- Banner de Instalación en Celular Mejorado -->
+        <div id="pwaInstallBanner" class="bg-gradient-to-r from-sky-50 via-indigo-50/60 to-slate-100 dark:from-sky-950/50 dark:via-indigo-950/40 dark:to-slate-900 border border-sky-200 dark:border-sky-500/30 rounded-2xl p-4 flex items-center justify-between gap-3.5 shadow-sm transition-all hover:border-sky-400/50">
+            <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-2xl bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/30 flex items-center justify-center text-xl shrink-0 shadow-sm">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-100">Instalar en la Pantalla de tu Celular</h4>
+                        <span class="hidden sm:inline-block text-[10px] uppercase font-black tracking-wider px-2 py-0.5 rounded-full bg-sky-500/15 text-sky-700 dark:text-sky-300 border border-sky-500/30">App Oficial</span>
+                    </div>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Accede con un toque en el altar y registra decisiones incluso sin internet.</p>
+                </div>
+            </div>
+            <button type="button" id="btnInstallPwa" onclick="promptInstallStandalone()" class="shrink-0 px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white text-xs font-black transition-all shadow-md shadow-sky-600/25 flex items-center gap-1.5 hover:scale-105 active:scale-95 cursor-pointer" title="Instalar como Aplicación">
+                <i class="fa-solid fa-circle-down"></i>
+                <span>Instalar App</span>
+            </button>
+        </div>
+
+        <!-- Encabezado del Formulario -->
+        <div class="text-center space-y-2.5 pt-2">
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wide bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/30 shadow-sm" data-i18n="decision.tag">
+                <i class="fa-solid fa-hands-praying"></i>
+                Registro Pastoral y Decisiones en el Altar
+                <span id="cultoDecisionsCount" class="ml-1.5 bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full text-[10px] font-black">0</span>
+            </span>
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-slate-50 tracking-tight" data-i18n="decision.title">Registro de Decisiones en Culto</h1>
+            <p class="text-sm text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed" data-i18n="decision.desc">
+                Formulario oficial para registrar a nuevos creyentes, reconciliaciones, peticiones de bautismo y nuevos hermanos en el altar.
+            </p>
+        </div>
+
+        <!-- Tarjeta del Versículo (Cómoda y Cálida para la Vista) -->
+        <div class="bg-amber-500/5 dark:bg-amber-500/10 border border-amber-400/30 dark:border-amber-500/30 rounded-2xl p-4 sm:p-5 flex items-center gap-4 shadow-sm transition-colors">
+            <div class="w-12 h-12 rounded-xl bg-amber-500/15 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl shrink-0 shadow-inner">
+                <i class="fa-solid fa-bible"></i>
+            </div>
+            <div>
+                <p class="text-xs sm:text-sm italic text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
+                    "De modo que si alguno está en Cristo, nueva criatura es; las cosas viejas pasaron; he aquí todas son hechas nuevas."
+                </p>
+                <p class="text-xs font-bold text-amber-700 dark:text-amber-400 mt-1">2 Corintios 5:17 • RadioVisión RTV & IMCOTNV</p>
+            </div>
+        </div>
+
+        <!-- Formulario Principal Adecuado para la Vista -->
+        <div class="bg-white dark:bg-[#0c152e] border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-8 shadow-xl dark:shadow-2xl space-y-5 transition-colors">
+            <form id="formCultoDecision" onsubmit="submitCultoDecision(event)" class="space-y-4">
+                
+                <!-- Nombre y Apellidos -->
+                <div>
+                    <label for="cultoDecName" class="block text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 mb-1.5" data-i18n="decision.name_label">
+                        Nombre y Apellidos del Hermano(a) *
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400 dark:text-slate-500">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                        <input type="text" id="cultoDecName" required class="w-full bg-slate-50 dark:bg-[#060c1d] border border-slate-300 dark:border-slate-700/80 rounded-xl pl-10 pr-4 py-3 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 dark:focus:border-amber-400 transition-all shadow-sm" placeholder="Ej. Mario Quispe Huamán">
+                    </div>
+                </div>
+
+                <!-- Dos columnas en pantallas medianas -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Celular / WhatsApp -->
+                    <div>
+                        <label for="cultoDecPhone" class="block text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 mb-1.5" data-i18n="decision.phone_label">
+                            Teléfono o WhatsApp *
+                        </label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-emerald-500 dark:text-emerald-400">
+                                <i class="fa-brands fa-whatsapp text-base"></i>
+                            </span>
+                            <input type="tel" id="cultoDecPhone" required class="w-full bg-slate-50 dark:bg-[#060c1d] border border-slate-300 dark:border-slate-700/80 rounded-xl pl-10 pr-4 py-3 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 dark:focus:border-amber-400 font-mono transition-all shadow-sm" placeholder="Ej. +51 984 123 456">
+                        </div>
+                    </div>
+
+                    <!-- Ciudad o Localidad -->
+                    <div>
+                        <label for="cultoDecCity" class="block text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 mb-1.5" data-i18n="decision.city_label">
+                            Ciudad, Comunidad o Anexo *
+                        </label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-rose-500 dark:text-rose-400">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span>
+                            <input type="text" id="cultoDecCity" required class="w-full bg-slate-50 dark:bg-[#060c1d] border border-slate-300 dark:border-slate-700/80 rounded-xl pl-10 pr-4 py-3 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 dark:focus:border-amber-400 transition-all shadow-sm" placeholder="Ej. Challhuahuacho, Apurímac">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Motivo / Decisión Espiritual -->
+                <div>
+                    <label for="cultoDecType" class="block text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 mb-1.5" data-i18n="decision.type_label">
+                        Motivo o Decisión Espiritual en el Altar *
+                    </label>
+                    <select id="cultoDecType" required class="w-full bg-slate-50 dark:bg-[#060c1d] border border-slate-300 dark:border-slate-700/80 rounded-xl px-4 py-3 text-xs sm:text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 dark:focus:border-amber-400 transition-all shadow-sm cursor-pointer">
+                        <option value="Reconciliación con Dios" class="bg-white dark:bg-[#0c152e] text-slate-900 dark:text-slate-100" data-i18n="decision.opt_reconciliation">🤝 Reconciliación con Dios (Regreso a la Fe)</option>
+                        <option value="Entrega de Vida por Primera Vez" class="bg-white dark:bg-[#0c152e] text-slate-900 dark:text-slate-100" data-i18n="decision.opt_first_time">🕊️ Entrega de Vida por Primera Vez (Aceptó a Cristo)</option>
+                        <option value="Petición de Bautismo en Aguas" class="bg-white dark:bg-[#0c152e] text-slate-900 dark:text-slate-100" data-i18n="decision.opt_baptism">🌊 Petición de Bautismo en Aguas</option>
+                        <option value="Desea Discipulado / Escuela Bíblica" class="bg-white dark:bg-[#0c152e] text-slate-900 dark:text-slate-100" data-i18n="decision.opt_discipleship">📖 Desea Discipulado / Escuela Bíblica</option>
+                        <option value="Visita y Desea Congregarse" class="bg-white dark:bg-[#0c152e] text-slate-900 dark:text-slate-100" data-i18n="decision.opt_visit">🏠 Visita / Desea Congregarse</option>
+                    </select>
+                </div>
+
+                <!-- Consejero o Líder -->
+                <div>
+                    <label for="cultoDecCounselor" class="block text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 mb-1.5" data-i18n="decision.counselor_label">
+                        Consejero o Líder que atendió en el altar
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-sky-500 dark:text-sky-400">
+                            <i class="fa-solid fa-hands-holding"></i>
+                        </span>
+                        <input type="text" id="cultoDecCounselor" class="w-full bg-slate-50 dark:bg-[#060c1d] border border-slate-300 dark:border-slate-700/80 rounded-xl pl-10 pr-4 py-3 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 dark:focus:border-amber-400 transition-all shadow-sm" placeholder="Ej. Pastor Richard Dávila / Diácono Juan">
+                    </div>
+                </div>
+
+                <!-- Petición de Oración / Notas -->
+                <div>
+                    <label for="cultoDecNotes" class="block text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 mb-1.5" data-i18n="decision.notes_label">
+                        Petición de Oración o Notas Pastorales
+                    </label>
+                    <textarea id="cultoDecNotes" rows="3" class="w-full bg-slate-50 dark:bg-[#060c1d] border border-slate-300 dark:border-slate-700/80 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 dark:focus:border-amber-400 resize-none transition-all shadow-sm" placeholder="Motivo específico de oración, salud familiar, etc."></textarea>
+                </div>
+
+                <!-- Botones de Acción Mejorados -->
+                <div class="pt-2 flex flex-col sm:flex-row gap-3">
+                    <button type="submit" class="flex-1 py-3.5 sm:py-4 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-sm sm:text-base shadow-lg shadow-amber-500/25 transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-file-circle-check text-base"></i>
+                        <span data-i18n="decision.btn_submit">Guardar Decisión</span>
+                    </button>
+
+                    <button type="button" onclick="openCultoDownloadModal()" class="py-3.5 sm:py-4 px-5 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-amber-300 font-bold text-xs sm:text-sm border border-slate-300 dark:border-amber-500/40 transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer" title="Abrir opciones de descarga: Excel, CSV, WhatsApp, PDF">
+                        <i class="fa-solid fa-download text-emerald-600 dark:text-emerald-400 text-base"></i>
+                        <span>Descargas y Reportes</span>
+                        <span class="text-[10px] bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded-full font-black border border-emerald-500/30">Excel / PDF</span>
+                    </button>
+                </div>
+
+                <p id="cultoDecFeedback" class="hidden text-center text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400 pt-2"></p>
+            </form>
+        </div>
+
+        <!-- Tarjetas Informativas Ergonómicas -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div onclick="openCultoDownloadModal()" role="button" tabindex="0" class="bg-white dark:bg-[#0c152e] border border-slate-200 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-3 shadow-sm hover:border-emerald-500/40 transition-all cursor-pointer group">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/15 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-file-excel"></i>
+                </div>
+                <div>
+                    <h5 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Compatible con Cualquier Celular</h5>
+                    <p class="text-xs text-slate-600 dark:text-slate-400">Descarga en Excel (.xls), CSV universal o genera un informe en PDF.</p>
+                </div>
+            </div>
+
+            <div onclick="promptInstallStandalone()" role="button" tabindex="0" class="bg-white dark:bg-[#0c152e] border border-slate-200 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-3 shadow-sm hover:border-sky-500/40 transition-all cursor-pointer group">
+                <div class="w-10 h-10 rounded-xl bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 flex items-center justify-center text-lg shrink-0 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+                <div>
+                    <h5 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">Instalar como Aplicación</h5>
+                    <p class="text-xs text-slate-600 dark:text-slate-400">Instala en la pantalla de inicio para registrar decisiones sin conexión.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Pie de Página -->
+    <footer class="mt-auto border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#060c1d] py-6 px-4 text-center text-xs text-slate-600 dark:text-slate-400 space-y-1 transition-colors">
+        <p>© 2026 RadioVisión RTV & Iglesia Misionera IMCOTNV • Challhuahuacho, Apurímac, Perú</p>
+        <p>Pastor Principal: Richard Edgardo Dávila Becerra • WhatsApp: +51 932 028 894</p>
+    </footer>
+
+    <!-- MODAL DE ÉXITO DE DECISIÓN -->
+    <div id="cultoSuccessModal" role="dialog" aria-modal="true" aria-labelledby="cultoModalTitle" class="hidden fixed inset-0 z-[2000] bg-black/75 dark:bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto" onclick="if(event.target === this) closeCultoSuccessModal();">
+        <div class="bg-white dark:bg-[#0c152e] border-2 border-amber-500/40 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl space-y-6 relative text-center transition-colors">
+            <button type="button" onclick="closeCultoSuccessModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 dark:hover:text-white p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-colors" aria-label="Cerrar modal">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="relative mx-auto w-20 h-20">
+                <div class="absolute inset-0 bg-amber-500/20 rounded-full blur-xl animate-pulse"></div>
+                <div class="relative w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-500/25 to-emerald-500/25 border-2 border-amber-400/50 flex items-center justify-center text-4xl text-amber-500 dark:text-amber-400 shadow-xl">
+                    <i class="fa-solid fa-cross"></i>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest block" data-i18n="decision.tag">Registro Pastoral y Decisiones en el Altar</span>
+                <h3 id="cultoModalTitle" class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white" data-i18n="decision.modal_title">¡Gloria a Dios! Decisión Registrada</h3>
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Se ha guardado este registro ministerial en el libro Excel. Hay fiesta en los cielos por cada alma que da un paso de fe hacia Jesús.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 dark:bg-[#060c1d] border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-left space-y-2 text-xs">
+                <div class="flex items-center justify-between text-slate-600 dark:text-slate-400">
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-user text-amber-500"></i><span>Hermano(a):</span></span>
+                    <span id="cultoModalName" class="font-bold text-slate-900 dark:text-white truncate max-w-[200px]">-</span>
+                </div>
+                <div class="flex items-center justify-between text-slate-600 dark:text-slate-400 pt-1.5 border-t border-slate-200 dark:border-slate-800">
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-rose-500"></i><span data-i18n="vis_modal.city_lbl">Ciudad / Sede:</span></span>
+                    <span id="cultoModalCity" class="font-semibold text-slate-800 dark:text-slate-200 truncate max-w-[200px]">-</span>
+                </div>
+                <div class="flex items-center justify-between text-slate-600 dark:text-slate-400 pt-1.5 border-t border-slate-200 dark:border-slate-800">
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-heart text-emerald-500"></i><span data-i18n="vis_modal.reason_lbl">Motivo:</span></span>
+                    <span id="cultoModalType" class="font-semibold text-emerald-700 dark:text-emerald-300 text-right truncate max-w-[200px]">-</span>
+                </div>
+                <div class="flex items-center justify-between text-slate-600 dark:text-slate-400 pt-1.5 border-t border-slate-200 dark:border-slate-800">
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-hands-holding text-sky-500"></i><span>Consejero:</span></span>
+                    <span id="cultoModalCounselor" class="font-semibold text-sky-700 dark:text-sky-300 text-right truncate max-w-[200px]">-</span>
+                </div>
+            </div>
+
+            <div class="space-y-2.5 pt-1">
+                <a id="cultoModalWaPastorBtn" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white dark:text-slate-950 font-black rounded-2xl shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 text-xs sm:text-sm transition-all hover:scale-[1.01] active:scale-[0.99]">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span data-i18n="decision.btn_wa_pastor">Notificar al Pastor por WhatsApp</span>
+                </a>
+
+                <a id="cultoModalWaBrotherBtn" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-3 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-2xl shadow-md flex items-center justify-center gap-2 text-xs sm:text-sm transition-all hover:scale-[1.01] active:scale-[0.99]">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span data-i18n="decision.btn_wa_brother">Enviar Bienvenida al Nuevo Creyente</span>
+                </a>
+
+                <button type="button" onclick="openCultoDownloadModal()" class="w-full py-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/90 dark:hover:bg-slate-700/90 text-slate-800 dark:text-amber-300 font-bold rounded-xl border border-slate-300 dark:border-amber-500/40 flex items-center justify-center gap-2 text-xs transition-all cursor-pointer">
+                    <i class="fa-solid fa-download text-base text-emerald-600 dark:text-emerald-400"></i>
+                    <span>Descargar Libro Excel o Informe</span>
+                </button>
+
+                <button type="button" onclick="closeCultoSuccessModal()" class="w-full py-2.5 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white font-semibold transition-colors rounded-xl hover:bg-slate-100 dark:hover:bg-white/5">
+                    <span data-i18n="decision.btn_register_another">➕ Registrar a Otro Hermano en Altar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE CENTRO DE DESCARGAS E INFORMES (MEJORADO) -->
+    <div id="cultoDownloadModal" role="dialog" aria-modal="true" aria-labelledby="cultoDownloadTitle" class="hidden fixed inset-0 z-[2000] bg-black/75 dark:bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto" onclick="if(event.target === this) closeCultoDownloadModal();">
+        <div class="bg-white dark:bg-[#0c152e] border-2 border-emerald-500/40 rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl space-y-5 relative text-left transition-colors">
+            
+            <!-- Botón cerrar -->
+            <button type="button" onclick="closeCultoDownloadModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 dark:hover:text-white p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-colors" aria-label="Cerrar modal de descarga">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Encabezado del Modal -->
+            <div class="flex items-center gap-3.5 pr-8">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-2xl shrink-0 shadow-sm">
+                    <i class="fa-solid fa-file-circle-down"></i>
+                </div>
+                <div>
+                    <h3 id="cultoDownloadTitle" class="text-lg sm:text-xl font-black text-slate-900 dark:text-white">Centro de Descarga e Informes</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400">Exporta las decisiones de fe registradas en el formato que prefieras.</p>
+                </div>
+            </div>
+
+            <!-- Contador de Decisiones en Vivo -->
+            <div class="bg-slate-50 dark:bg-[#060c1d] border border-slate-200 dark:border-slate-800 rounded-2xl p-3.5 flex items-center justify-between text-xs">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-slate-600 dark:text-slate-300 font-medium">Registros en este dispositivo:</span>
+                </div>
+                <span id="downloadModalCounterText" class="font-extrabold text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">0 Decisiones</span>
+            </div>
+
+            <!-- Opciones de Descarga en Cuadrícula -->
+            <div class="space-y-3">
+                <!-- Opción 1: Excel con Diseño Ministerial -->
+                <button type="button" onclick="downloadCultoDecisionsExcelEnhanced()" class="w-full text-left p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700/80 bg-slate-50/70 hover:bg-emerald-50 dark:bg-slate-900/60 dark:hover:bg-emerald-950/30 hover:border-emerald-500/50 transition-all flex items-center justify-between group cursor-pointer shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-file-excel"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">Excel Oficial Ministerial (.xls)</span>
+                                <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30">Oficial</span>
+                            </div>
+                            <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Con membrete pastoral, versículos bíblicos y columnas estilizadas.</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-download text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 text-sm ml-2"></i>
+                </button>
+
+                <!-- Opción 2: CSV Universal Compatible 100% Celulares -->
+                <button type="button" onclick="downloadCultoDecisionsCSVEnhanced()" class="w-full text-left p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700/80 bg-slate-50/70 hover:bg-sky-50 dark:bg-slate-900/60 dark:hover:bg-sky-950/30 hover:border-sky-500/50 transition-all flex items-center justify-between group cursor-pointer shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-sky-600/15 text-sky-600 dark:text-sky-400 flex items-center justify-center text-lg shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-file-csv"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">Archivo CSV Universal (.csv)</span>
+                                <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-sky-500/15 text-sky-700 dark:text-sky-300 border border-sky-500/30">Móvil / Drive</span>
+                            </div>
+                            <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Abre directo en Google Sheets, WPS Office y Excel móvil sin alertas.</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-download text-slate-400 group-hover:text-sky-600 dark:group-hover:text-sky-400 text-sm ml-2"></i>
+                </button>
+
+                <!-- Opción 3: Copiar Informe para WhatsApp -->
+                <button type="button" onclick="copyCultoDecisionsToClipboard()" class="w-full text-left p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700/80 bg-slate-50/70 hover:bg-emerald-50 dark:bg-slate-900/60 dark:hover:bg-emerald-950/30 hover:border-emerald-500/50 transition-all flex items-center justify-between group cursor-pointer shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-500 flex items-center justify-center text-lg shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">Copiar Resumen para WhatsApp</span>
+                                <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30">1 Clic</span>
+                            </div>
+                            <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Texto formateado con nombres y motivos listo para pegar en el grupo.</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-copy text-slate-400 group-hover:text-emerald-500 text-sm ml-2"></i>
+                </button>
+
+                <!-- Opción 4: Imprimir / Guardar en PDF -->
+                <button type="button" onclick="printCultoDecisionsReport()" class="w-full text-left p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700/80 bg-slate-50/70 hover:bg-amber-50 dark:bg-slate-900/60 dark:hover:bg-amber-950/30 hover:border-amber-500/50 transition-all flex items-center justify-between group cursor-pointer shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-print"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">Imprimir / Guardar en PDF</span>
+                                <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30">Documento</span>
+                            </div>
+                            <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Hoja oficial con membrete para archivar físicamente o generar PDF.</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-slate-400 group-hover:text-amber-500 text-sm ml-2"></i>
+                </button>
+            </div>
+
+            <!-- Pie del Modal -->
+            <div class="pt-2 flex justify-end">
+                <button type="button" onclick="closeCultoDownloadModal()" class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold transition-all cursor-pointer">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL GUÍA DE INSTALACIÓN PWA MEJORADO (SIN ALERTAS NATIVAS) -->
+    <div id="decisionInstallGuideModal" role="dialog" aria-modal="true" aria-labelledby="installGuideTitle" class="hidden fixed inset-0 z-[2000] bg-black/75 dark:bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto" onclick="if(event.target === this) closeDecisionInstallModal();">
+        <div class="bg-white dark:bg-[#0c152e] border-2 border-sky-500/40 rounded-3xl max-w-lg w-full p-5 sm:p-7 shadow-2xl space-y-5 text-slate-900 dark:text-slate-100 relative text-left transition-colors">
+            
+            <!-- Botón cerrar -->
+            <button type="button" onclick="closeDecisionInstallModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 dark:hover:text-white p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-colors" aria-label="Cerrar modal de instalación">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Encabezado con Identidad -->
+            <div class="flex items-start gap-3.5 pr-8">
+                <img src="img/logo-radio.jpg" alt="Decisiones RTV" class="w-12 h-12 rounded-2xl object-cover border-2 border-amber-500/40 shadow-md shrink-0">
+                <div>
+                    <span class="text-[10px] font-black uppercase tracking-wider text-sky-600 dark:text-sky-400 block">Aplicación Móvil Ministerial</span>
+                    <h3 id="installGuideTitle" class="text-lg sm:text-xl font-black text-slate-900 dark:text-white leading-tight">Instalar App en tu Celular</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Agrega el formulario de decisiones a la pantalla de inicio de tu teléfono.</p>
+                </div>
+            </div>
+
+            <!-- Beneficios Destacados -->
+            <div class="grid grid-cols-3 gap-2 bg-slate-50 dark:bg-[#060c1d] p-3 rounded-2xl border border-slate-200 dark:border-slate-800 text-center">
+                <div class="space-y-1">
+                    <span class="w-7 h-7 mx-auto rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xs">
+                        <i class="fa-solid fa-bolt"></i>
+                    </span>
+                    <strong class="block text-[11px] font-bold text-slate-900 dark:text-white leading-none">1 Toque</strong>
+                    <span class="text-[10px] text-slate-500 dark:text-slate-400">Acceso directo</span>
+                </div>
+                <div class="space-y-1">
+                    <span class="w-7 h-7 mx-auto rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xs">
+                        <i class="fa-solid fa-wifi"></i>
+                    </span>
+                    <strong class="block text-[11px] font-bold text-slate-900 dark:text-white leading-none">Offline</strong>
+                    <span class="text-[10px] text-slate-500 dark:text-slate-400">Sin internet</span>
+                </div>
+                <div class="space-y-1">
+                    <span class="w-7 h-7 mx-auto rounded-lg bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xs">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </span>
+                    <strong class="block text-[11px] font-bold text-slate-900 dark:text-white leading-none">Segura</strong>
+                    <span class="text-[10px] text-slate-500 dark:text-slate-400">0 MB en PlayStore</span>
+                </div>
+            </div>
+
+            <!-- Botón de Instalación Automática (si el navegador lo soporta) -->
+            <div id="pwaDirectInstallBox" class="hidden">
+                <button type="button" onclick="executePwaNativeInstallDirect()" class="w-full py-3.5 px-4 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 hover:from-sky-500 hover:to-blue-500 text-white font-black text-sm rounded-2xl shadow-lg shadow-sky-600/25 transition-all flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] cursor-pointer">
+                    <i class="fa-solid fa-download text-base"></i>
+                    <span>Instalar Automáticamente con 1 Clic</span>
+                </button>
+            </div>
+
+            <!-- Selector de Pestañas según Dispositivo -->
+            <div class="space-y-3">
+                <div class="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-900/90 rounded-2xl border border-slate-200 dark:border-slate-800">
+                    <button type="button" id="tabInstallAndroid" onclick="switchInstallTab('android')" class="flex-1 py-2 px-3 text-xs font-bold rounded-xl border transition-all cursor-pointer flex items-center justify-center gap-1.5">
+                        <i class="fa-brands fa-android text-emerald-500"></i>
+                        <span>Android</span>
+                    </button>
+                    <button type="button" id="tabInstallIos" onclick="switchInstallTab('ios')" class="flex-1 py-2 px-3 text-xs font-bold rounded-xl border transition-all cursor-pointer flex items-center justify-center gap-1.5">
+                        <i class="fa-brands fa-apple text-slate-800 dark:text-slate-200"></i>
+                        <span>iPhone / iPad</span>
+                    </button>
+                    <button type="button" id="tabInstallDesktop" onclick="switchInstallTab('desktop')" class="flex-1 py-2 px-3 text-xs font-bold rounded-xl border transition-all cursor-pointer flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-laptop text-sky-500"></i>
+                        <span>Computadora</span>
+                    </button>
+                </div>
+
+                <!-- Contenido 1: Android (Google Chrome) -->
+                <div id="contentInstallAndroid" class="p-4 bg-slate-50 dark:bg-[#060c1d] rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3 text-xs">
+                    <div class="flex items-center justify-between text-slate-700 dark:text-slate-300 font-bold">
+                        <span class="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
+                            <i class="fa-brands fa-chrome"></i> Pasos en Android (Chrome):
+                        </span>
+                        <span class="text-[10px] font-normal text-slate-500">Toma 10 segundos</span>
+                    </div>
+                    <ol class="space-y-2.5 text-slate-700 dark:text-slate-300">
+                        <li class="flex items-start gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-black flex items-center justify-center text-[10px] shrink-0 mt-0.5">1</span>
+                            <span>Toca los <strong>3 puntos verticales</strong> <i class="fa-solid fa-ellipsis-vertical text-emerald-600 dark:text-emerald-400 mx-1"></i> en la esquina superior derecha del navegador Chrome.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-black flex items-center justify-center text-[10px] shrink-0 mt-0.5">2</span>
+                            <span>Selecciona la opción <strong>"Instalar aplicación"</strong> o <strong>"Agregar a la pantalla principal"</strong> <i class="fa-solid fa-mobile-screen text-sky-500 mx-1"></i>.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-black flex items-center justify-center text-[10px] shrink-0 mt-0.5">3</span>
+                            <span>Presiona <strong>"Instalar"</strong>. ¡Aparecerá el icono oficial <strong>Decisiones RTV</strong> en la pantalla de tu celular!</span>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- Contenido 2: iPhone / iPad (Safari) -->
+                <div id="contentInstallIos" class="hidden p-4 bg-slate-50 dark:bg-[#060c1d] rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3 text-xs">
+                    <div class="flex items-center justify-between text-slate-700 dark:text-slate-300 font-bold">
+                        <span class="flex items-center gap-1.5 text-amber-600 dark:text-amber-400">
+                            <i class="fa-brands fa-apple"></i> Pasos en iPhone / iPad (Safari):
+                        </span>
+                        <span class="text-[10px] font-normal text-slate-500">Toma 10 segundos</span>
+                    </div>
+                    <ol class="space-y-2.5 text-slate-700 dark:text-slate-300">
+                        <li class="flex items-start gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-sky-600 text-white font-black flex items-center justify-center text-[10px] shrink-0 mt-0.5">1</span>
+                            <span>En la parte inferior de Safari, toca el botón <strong>Compartir</strong> <i class="fa-solid fa-arrow-up-from-bracket text-sky-500 mx-1"></i> (cuadrado con flecha hacia arriba).</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-sky-600 text-white font-black flex items-center justify-center text-[10px] shrink-0 mt-0.5">2</span>
+                            <span>Desliza hacia abajo en el menú y selecciona <strong>"Agregar a la pantalla de inicio"</strong> <i class="fa-regular fa-square-plus text-emerald-500 mx-1"></i>.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-sky-600 text-white font-black flex items-center justify-center text-[10px] shrink-0 mt-0.5">3</span>
+                            <span>Toca <strong>"Agregar"</strong> en la esquina superior derecha y listo.</span>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- Contenido 3: Computadora (Chrome / Edge) -->
+                <div id="contentInstallDesktop" class="hidden p-4 bg-slate-50 dark:bg-[#060c1d] rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3 text-xs">
+                    <div class="flex items-center gap-1.5 font-bold text-sky-600 dark:text-sky-400">
+                        <i class="fa-solid fa-laptop"></i> En Google Chrome o Microsoft Edge:
+                    </div>
+                    <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
+                        Mira en la <strong>barra de direcciones (URL)</strong> arriba a la derecha. Verás el icono de una pantallita con flecha <i class="fa-solid fa-display text-sky-500 mx-1"></i> o <i class="fa-solid fa-circle-down text-emerald-500 mx-1"></i> para <strong>"Instalar aplicación"</strong>.
+                    </p>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                        Al instalarla, se abrirá en una ventana propia sin barras del navegador, funcionando como un programa nativo de Windows o Mac.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pie del Modal -->
+            <div class="pt-2 flex justify-between items-center">
+                <span class="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                    <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                    Compatible con cualquier dispositivo
+                </span>
+                <button type="button" onclick="closeDecisionInstallModal()" class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold transition-all cursor-pointer">
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor para Notificaciones Toast -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-[99999] flex flex-col space-y-2 pointer-events-none"></div>
+
+    <!-- Scripts Esenciales y Lógica PWA -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // ==============================================================
+        // MANEJADOR PWA MEJORADO (SIN ALERTAS NATIVAS)
+        // ==============================================================
+        let deferredPrompt = null;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Mostrar botón directo de instalación en el modal si existe
+            const directBox = document.getElementById('pwaDirectInstallBox');
+            if (directBox) directBox.classList.remove('hidden');
+
+            const banner = document.getElementById('pwaInstallBanner');
+            if (banner) banner.classList.remove('hidden');
+        });
+
+        function promptInstallStandalone() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        if (typeof showToast === 'function') {
+                            showToast('🎉 ¡App instalada con éxito en tu pantalla!', 'success');
+                        }
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                openDecisionInstallModal();
+            }
+        }
+
+        function executePwaNativeInstallDirect() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        if (typeof showToast === 'function') {
+                            showToast('🎉 ¡App instalada con éxito!', 'success');
+                        }
+                        closeDecisionInstallModal();
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                if (typeof showToast === 'function') {
+                    showToast('Sigue los pasos indicados en pantalla según tu celular', 'info');
+                }
+            }
+        }
+
+        function openDecisionInstallModal(platform) {
+            const modal = document.getElementById('decisionInstallGuideModal');
+            if (!modal) return;
+
+            if (deferredPrompt) {
+                const directBox = document.getElementById('pwaDirectInstallBox');
+                if (directBox) directBox.classList.remove('hidden');
+            }
+
+            // Detección automática del dispositivo
+            if (!platform) {
+                const ua = navigator.userAgent || navigator.vendor || window.opera || '';
+                if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+                    platform = 'ios';
+                } else if (/android/i.test(ua)) {
+                    platform = 'android';
+                } else {
+                    platform = 'desktop';
+                }
+            }
+            switchInstallTab(platform);
+
+            modal.classList.remove('hidden');
+            modal.style.display = 'flex';
+        }
+
+        function closeDecisionInstallModal() {
+            const modal = document.getElementById('decisionInstallGuideModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.style.display = 'none';
+            }
+        }
+
+        function switchInstallTab(platform) {
+            const tabAndroid = document.getElementById('tabInstallAndroid');
+            const tabIos = document.getElementById('tabInstallIos');
+            const tabDesktop = document.getElementById('tabInstallDesktop');
+
+            const contentAndroid = document.getElementById('contentInstallAndroid');
+            const contentIos = document.getElementById('contentInstallIos');
+            const contentDesktop = document.getElementById('contentInstallDesktop');
+
+            const tabs = [
+                { el: tabAndroid, id: 'android' },
+                { el: tabIos, id: 'ios' },
+                { el: tabDesktop, id: 'desktop' }
+            ];
+            const contents = [
+                { el: contentAndroid, id: 'android' },
+                { el: contentIos, id: 'ios' },
+                { el: contentDesktop, id: 'desktop' }
+            ];
+
+            tabs.forEach(t => {
+                if (!t.el) return;
+                if (t.id === platform) {
+                    t.el.className = "flex-1 py-2 px-3 text-xs font-bold rounded-xl border transition-all bg-sky-500/15 text-sky-700 dark:text-sky-300 border-sky-500/40 shadow-sm cursor-pointer flex items-center justify-center gap-1.5";
+                } else {
+                    t.el.className = "flex-1 py-2 px-3 text-xs font-bold rounded-xl border transition-all text-slate-600 dark:text-slate-400 border-transparent hover:bg-slate-200/60 dark:hover:bg-slate-800 cursor-pointer flex items-center justify-center gap-1.5";
+                }
+            });
+
+            contents.forEach(c => {
+                if (!c.el) return;
+                if (c.id === platform) {
+                    c.el.classList.remove('hidden');
+                } else {
+                    c.el.classList.add('hidden');
+                }
+            });
+        }
+
+        // Si ya está instalado en modo Standalone, ajustar el banner
+        function checkStandaloneMode() {
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+            if (isStandalone) {
+                const banner = document.getElementById('pwaInstallBanner');
+                if (banner) {
+                    banner.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-500 flex items-center justify-center text-base shrink-0">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-slate-900 dark:text-white">App Instalada en tu Dispositivo</h4>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400">Modo ministerial activo con soporte offline.</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // Alternador de Idioma específico para decision.html
+        function toggleLanguageDecision() {
+            if (typeof toggleAppLanguage === 'function') {
+                toggleAppLanguage();
+            } else if (typeof setAppLanguage === 'function') {
+                const current = (typeof getAppLanguage === 'function') ? getAppLanguage() : 'es';
+                setAppLanguage(current === 'es' ? 'qu' : 'es');
+            }
+            const current = (typeof getAppLanguage === 'function') ? getAppLanguage() : 'es';
+            const lbl = document.getElementById('langLabel');
+            if (lbl) lbl.textContent = current === 'es' ? 'QU' : 'ES';
+        }
+
+        // Alternador de Modo Visual (Día / Noche)
+        function toggleDarkModeDecision() {
+            if (typeof toggleDarkMode === 'function') {
+                toggleDarkMode();
+            } else {
+                const isDark = document.documentElement.classList.contains('dark') || document.body.classList.contains('dark-theme');
+                const targetTheme = !isDark;
+                if (targetTheme) {
+                    document.documentElement.classList.add('dark');
+                    document.body.classList.add('dark-theme');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    document.body.classList.remove('dark-theme');
+                }
+                localStorage.setItem('rtv_theme', targetTheme ? 'dark' : 'light');
+            }
+            updateDecisionThemeIcon();
+        }
+
+        function updateDecisionThemeIcon() {
+            const isDark = document.documentElement.classList.contains('dark') || document.body.classList.contains('dark-theme');
+            const icon = document.getElementById('themeToggleIcon');
+            if (icon) {
+                icon.className = isDark ? "fa-solid fa-sun text-yellow-400" : "fa-solid fa-moon text-amber-500";
+            }
+        }
+
+        // ==============================================================
+        // LÓGICA MEJORADA DE DESCARGAS E INFORMES MINISTERIALES
+        // ==============================================================
+        function getCultoDecisionsList() {
+            let decisions = [];
+            if (typeof appData !== 'undefined' && appData && Array.isArray(appData.cultoDecisions) && appData.cultoDecisions.length > 0) {
+                decisions = appData.cultoDecisions;
+            } else if (typeof window !== 'undefined' && window.appData && Array.isArray(window.appData.cultoDecisions) && window.appData.cultoDecisions.length > 0) {
+                decisions = window.appData.cultoDecisions;
+            } else {
+                try {
+                    const raw = localStorage.getItem('RadioVisionRTV_AppData_v4');
+                    if (raw) {
+                        const parsed = JSON.parse(raw);
+                        if (parsed && Array.isArray(parsed.cultoDecisions)) {
+                            decisions = parsed.cultoDecisions;
+                        }
+                    }
+                } catch (e) {}
+            }
+            return decisions;
+        }
+
+        function openCultoDownloadModal() {
+            const modal = document.getElementById('cultoDownloadModal');
+            const counter = document.getElementById('downloadModalCounterText');
+            const decisions = getCultoDecisionsList();
+            
+            if (counter) {
+                counter.textContent = decisions.length === 1 ? '1 Decisión' : `${decisions.length} Decisiones`;
+            }
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.style.display = 'flex';
+            }
+        }
+
+        function closeCultoDownloadModal() {
+            const modal = document.getElementById('cultoDownloadModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.style.display = 'none';
+            }
+        }
+
+        // Descarga 1: Excel Mejorado Oficial (.xls con UTF-8 real y BOM)
+        function downloadCultoDecisionsExcelEnhanced() {
+            if (typeof downloadCultoDecisionsExcel === 'function') {
+                downloadCultoDecisionsExcel();
+            }
+            closeCultoDownloadModal();
+        }
+
+        // Descarga 2: CSV Universal (100% compatible con móviles y Google Sheets)
+        function downloadCultoDecisionsCSVEnhanced() {
+            const decisions = getCultoDecisionsList();
+            const headers = ['ID', 'Fecha y Hora', 'Nombre Completo', 'Teléfono / WhatsApp', 'Ciudad / Comunidad', 'Motivo / Decisión', 'Consejero / Líder', 'Notas Pastorales'];
+            let rows;
+            if (decisions.length > 0) {
+                rows = decisions.map(d => [
+                    d.id || '',
+                    d.date || '',
+                    d.name || '',
+                    d.phone || '',
+                    d.city || '',
+                    d.decisionType || '',
+                    d.counselor || '',
+                    d.notes || ''
+                ]);
+            } else {
+                rows = [
+                    ['DEC-001', new Date().toLocaleDateString('es-ES'), 'Plantilla Oficial - Libro de Decisiones', '+51 932 028 894', 'Challhuahuacho', 'Reconciliación con Dios / Primera Vez', 'Pastor Richard Dávila', 'Registro ministerial listo para cultos']
+                ];
+            }
+
+            const BOM = '\uFEFF';
+            const csvRows = [
+                headers.map(h => `"${h.replace(/"/g, '""')}"`).join(';'),
+                ...rows.map(row => row.map(c => `"${String(c || '').replace(/"/g, '""')}"`).join(';'))
+            ];
+            const blob = new Blob([BOM + csvRows.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
+            const dateStr = new Date().toISOString().slice(0, 10);
+            const filename = `RadioVision_Decisiones_Culto_${dateStr}.csv`;
+
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+                if (document.body.contains(a)) document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 1500);
+
+            if (typeof showToast === 'function') {
+                showToast('📥 Archivo CSV descargado con éxito', 'success');
+            } else {
+                alert('📥 Archivo CSV descargado con éxito.');
+            }
+            closeCultoDownloadModal();
+        }
+
+        // Descarga 3: Copiar Informe Estructurado para WhatsApp
+        function copyCultoDecisionsToClipboard() {
+            const decisions = getCultoDecisionsList();
+            const now = new Date().toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            
+            let text = `🕊️ *RADIOVISIÓN RTV & IMCOTNV*\n`;
+            text += `📋 *INFORME DE DECISIONES EN EL ALTAR*\n`;
+            text += `📅 *Fecha:* ${now}\n`;
+            text += `👤 *Pastor Principal:* Richard Edgardo Dávila Becerra\n`;
+            text += `📍 *Sede Central:* Challhuahuacho, Apurímac\n`;
+            text += `───────────────────────\n`;
+
+            if (decisions.length === 0) {
+                text += `(Sin decisiones registradas aún en este culto - Formulario activo)\n`;
+            } else {
+                text += `✨ *Total de Almas Registradas:* ${decisions.length}\n\n`;
+                decisions.forEach((d, i) => {
+                    text += `*${i + 1}. ${d.name || 'Hermano(a)'}*\n`;
+                    text += `   📱 Celular: ${d.phone || 'No registrado'}\n`;
+                    text += `   📍 Lugar: ${d.city || 'Challhuahuacho'}\n`;
+                    text += `   🤝 Decisión: ${d.decisionType || 'Decisión de Fe'}\n`;
+                    if (d.counselor) text += `   👤 Atendido por: ${d.counselor}\n`;
+                    if (d.notes) text += `   📝 Petición/Notas: ${d.notes}\n`;
+                    text += `\n`;
+                });
+            }
+            text += `───────────────────────\n`;
+            text += `📖 _"De modo que si alguno está en Cristo, nueva criatura es; las cosas viejas pasaron; he aquí todas son hechas nuevas." (2 Corintios 5:17)_\n`;
+            text += `🙌 ¡A Dios sea toda la honra y gloria!`;
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    if (typeof showToast === 'function') {
+                        showToast('📋 ¡Informe copiado! Pégalo en WhatsApp', 'success');
+                    } else {
+                        alert('📋 ¡Informe copiado con éxito! Ahora puedes pegarlo en WhatsApp.');
+                    }
+                }).catch(() => fallbackCopyText(text));
+            } else {
+                fallbackCopyText(text);
+            }
+            closeCultoDownloadModal();
+        }
+
+        function fallbackCopyText(text) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            try {
+                document.execCommand('copy');
+                alert('📋 ¡Informe copiado con éxito! Ahora puedes pegarlo en WhatsApp.');
+            } catch (e) {
+                alert('No se pudo copiar automáticamente. Por favor copia el texto manualmente.');
+            }
+            document.body.removeChild(ta);
+        }
+
+        // Descarga 4: Vista de Impresión Oficial y Guardar en PDF
+        function printCultoDecisionsReport() {
+            const decisions = getCultoDecisionsList();
+            const now = new Date().toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+            let rowsHtml = '';
+            if (decisions.length > 0) {
+                decisions.forEach((d, idx) => {
+                    rowsHtml += `
+                    <tr style="background-color: ${idx % 2 === 0 ? '#ffffff' : '#f8fafc'};">
+                        <td style="padding: 8px; border: 1px solid #cbd5e1; text-align: center; font-weight: bold;">${idx + 1}</td>
+                        <td style="padding: 8px; border: 1px solid #cbd5e1; font-weight: bold; color: #0f172a;">${d.name || '-'}</td>
+                        <td style="padding: 8px; border: 1px solid #cbd5e1; font-family: monospace;">${d.phone || '-'}</td>
+                        <td style="padding: 8px; border: 1px solid #cbd5e1;">${d.city || '-'}</td>
+                        <td style="padding: 8px; border: 1px solid #cbd5e1; font-weight: 600; color: #047857;">${d.decisionType || '-'}</td>
+                        <td style="padding: 8px; border: 1px solid #cbd5e1;">${d.counselor || '-'}</td>
+                        <td style="padding: 8px; border: 1px solid #cbd5e1; font-size: 8.5pt;">${d.notes || '-'}</td>
+                        <td style="padding: 8px; border: 1px solid #cbd5e1; font-size: 8.5pt;">${d.date || '-'}</td>
+                    </tr>`;
+                });
+            } else {
+                rowsHtml = `<tr><td colspan="8" style="padding: 16px; text-align: center; color: #64748b;">No hay registros guardados aún en este dispositivo.</td></tr>`;
+            }
+
+            const printWindow = window.open('', '_blank');
+            if (!printWindow) {
+                window.print();
+                return;
+            }
+
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Libro Oficial de Decisiones en Culto - RadioVisión RTV</title>
+                    <style>
+                        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 25px; color: #1e293b; }
+                        .header { text-align: center; border-bottom: 2px solid #047857; padding-bottom: 12px; margin-bottom: 15px; }
+                        .header h1 { margin: 0; color: #047857; font-size: 20px; font-weight: 900; }
+                        .header h2 { margin: 4px 0; color: #0f172a; font-size: 14px; font-weight: 700; }
+                        .header p { margin: 2px 0; font-size: 11px; color: #64748b; }
+                        .verse { background-color: #ecfdf5; border: 1px solid #a7f3d0; padding: 10px; border-radius: 8px; text-align: center; font-style: italic; font-size: 12px; color: #065f46; margin-bottom: 15px; }
+                        table { width: 100%; border-collapse: collapse; font-size: 10.5px; }
+                        th { background-color: #047857; color: white; padding: 8px 6px; text-align: left; border: 1px solid #064e3b; font-size: 10px; }
+                        @media print {
+                            body { margin: 8mm; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>RADIOVISIÓN RTV &amp; IGLESIA MISIONERA IMCOTNV</h1>
+                        <h2>LIBRO OFICIAL DE DECISIONES DE CULTO Y NUEVOS CREYENTES</h2>
+                        <p>Pastor Principal: Richard Edgardo Dávila Becerra • Challhuahuacho, Apurímac</p>
+                        <p>Fecha de emisión: ${now}</p>
+                    </div>
+                    <div class="verse">
+                        "De modo que si alguno está en Cristo, nueva criatura es; las cosas viejas pasaron; he aquí todas son hechas nuevas." (2 Corintios 5:17)
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 25px; text-align: center;">N°</th>
+                                <th>Nombre y Apellidos</th>
+                                <th>Teléfono / WhatsApp</th>
+                                <th>Ciudad / Comunidad</th>
+                                <th>Motivo / Decisión</th>
+                                <th>Consejero</th>
+                                <th>Notas Pastorales</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${rowsHtml}
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 25px; text-align: center; font-size: 10px; color: #64748b;">
+                        Documento ministerial de RadioVisión RTV &amp; Iglesia Misionera Casa de Oración para Todas las Naciones.
+                    </div>
+                    <script>
+                        window.onload = function() { window.print(); };
+                    <\/script>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            closeCultoDownloadModal();
+        }
+
+        // Inicialización y Registro de Service Worker para soporte offline
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').catch(err => console.log('SW reg error:', err));
+            });
+        }
+
+        // Sincronización de estado inicial de idioma, tema y conteo al cargar
+        document.addEventListener('DOMContentLoaded', () => {
+            const current = (typeof getAppLanguage === 'function') ? getAppLanguage() : 'es';
+            const lbl = document.getElementById('langLabel');
+            if (lbl) lbl.textContent = current === 'es' ? 'QU' : 'ES';
+            updateDecisionThemeIcon();
+            checkStandaloneMode();
+            if (typeof renderCultoDecision === 'function') renderCultoDecision();
+        });
+    </script>
+</body>
+</html>

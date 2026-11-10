@@ -1,0 +1,105 @@
+{
+  "name": "IMCOTNV - Iglesia Misionera Casa de Oración para Todas las Naciones",
+  "short_name": "IMCOTNV",
+  "id": "/imcotnv-radiovision-pwa",
+  "description": "App Oficial de la Iglesia Misionera Casa de Oración para Todas las Naciones y RadioVisión RTV: Dos Emisoras 24/7 en vivo, Biblia interactiva offline, cultos y predicaciones.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui"
+  ],
+  "orientation": "portrait-primary",
+  "background_color": "#060c1d",
+  "theme_color": "#060c1d",
+  "lang": "es-PE",
+  "categories": [
+    "religion",
+    "lifestyle",
+    "music",
+    "news"
+  ],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "img/logo-iglesia.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "img/logo-radio.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Radio en Vivo (2 Emisoras)",
+      "short_name": "Radio RTV",
+      "description": "Sintonizar RadioVisión RTV y Señal Quechua 24/7",
+      "url": "./index.html#radiovision",
+      "icons": [
+        {
+          "src": "img/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Biblia Reina Valera Offline",
+      "short_name": "Biblia",
+      "description": "Leer y buscar en los 66 libros de la Biblia sin conexión",
+      "url": "./index.html#biblia",
+      "icons": [
+        {
+          "src": "img/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Culto en Vivo",
+      "short_name": "En Vivo",
+      "description": "Ver la transmisión oficial de cultos y conferencias",
+      "url": "./index.html#culto-en-vivo",
+      "icons": [
+        {
+          "src": "img/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Sedes y Ubicación",
+      "short_name": "Sedes",
+      "description": "Ver mapa de la Sede Central Challhuahuacho y anexos regionales",
+      "url": "./index.html#sedes",
+      "icons": [
+        {
+          "src": "img/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

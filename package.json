@@ -1,0 +1,14 @@
+{
+  "name": "radio-vision-rtv",
+  "version": "2.5.1",
+  "private": true,
+  "description": "Sitio oficial IMCOTNV y RadioVisión RTV — PWA con radio en vivo, Biblia y cultos.",
+  "scripts": {
+    "dev": "npx --yes serve -l 3847 .",
+    "start": "npx --yes serve -l 3847 .",
+    "preview": "npx --yes serve -l 3847 ."
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

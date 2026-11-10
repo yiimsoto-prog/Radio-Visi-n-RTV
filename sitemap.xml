@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- 1. Página de Inicio y Señal en Vivo -->
+  <url>
+    <loc>https://radiovisionrtv.com/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://radiovisionrtv.com/img/logo-iglesia.jpg</image:loc>
+      <image:title>IMCOTNV - Iglesia Misionera Casa de Oración para Todas las Naciones</image:title>
+    </image:image>
+  </url>
+
+  <!-- 2. Nosotros y Pastores -->
+  <url>
+    <loc>https://radiovisionrtv.com/#nosotros</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 3. Cultos y Eventos -->
+  <url>
+    <loc>https://radiovisionrtv.com/#eventos</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 4. Sedes, Ubicación y Anexos Regionales -->
+  <url>
+    <loc>https://radiovisionrtv.com/#sedes</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 5. Avance Misionero -->
+  <url>
+    <loc>https://radiovisionrtv.com/#misionero</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 6. Ministerios y Escuela Bíblica -->
+  <url>
+    <loc>https://radiovisionrtv.com/#ministerios</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 7. Radio en Vivo 24/7 (Doble Emisora) -->
+  <url>
+    <loc>https://radiovisionrtv.com/#radiovision</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- 8. Culto en Vivo -->
+  <url>
+    <loc>https://radiovisionrtv.com/#culto-en-vivo</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- 9. Biblia Interactiva Reina Valera 1960 -->
+  <url>
+    <loc>https://radiovisionrtv.com/#biblia</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 10. Galería Multimedia -->
+  <url>
+    <loc>https://radiovisionrtv.com/#galeria</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 11. Biblioteca Cristiana y Testimonios -->
+  <url>
+    <loc>https://radiovisionrtv.com/#biblioteca</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 12. Peticiones de Oración -->
+  <url>
+    <loc>https://radiovisionrtv.com/#oracion</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 13. Soy Nuevo / Bienvenida -->
+  <url>
+    <loc>https://radiovisionrtv.com/#soy-nuevo</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+</urlset>

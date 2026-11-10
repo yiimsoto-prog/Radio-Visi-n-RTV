@@ -1,0 +1,215 @@
+/* ==============================================================
+   THEME.CSS - DESIGN TOKENS, TIPOGRAFÍA, ANIMACIONES Y VARIABLES
+   RadioVisión RTV - Plataforma Modular Moderna
+   ============================================================== */
+
+:root {
+  /* Paleta Base Light (Modo Claro Profesional y Limpio) */
+  --bg-page: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-subtle: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --bg-nav: rgba(255, 255, 255, 0.96);
+  
+  /* Textos Modo Claro */
+  --text-main: #1e293b;
+  --text-heading: #0f172a;
+  --text-muted: #475569;
+  --text-subtle: #64748b;
+  
+  /* Bordes */
+  --border-light: #e2e8f0;
+  --border-subtle: #cbd5e1;
+  --border-accent: rgba(217, 119, 6, 0.25);
+  
+  /* Colores de Marca */
+  --brand-navy: #060c1d;
+  --brand-dark: #0c152e;
+  --brand-yellow: #facc15;
+  --brand-yellow-hover: #eab308;
+  --brand-red: #ef4444;
+  --brand-green: #22c55e;
+  --brand-blue: #3b82f6;
+  
+  /* Sombras y Efectos */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-glow-yellow: 0 0 20px rgba(250, 204, 21, 0.35);
+  --shadow-glow-blue: 0 0 20px rgba(59, 130, 246, 0.3);
+  
+  /* Tipografía */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+html, body {
+  overflow-x: clip;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-page) !important;
+  color: var(--text-main);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Cabecera Fija Sticky que acompaña el Scroll */
+header.sticky,
+header.glass-nav {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 50 !important;
+  width: 100% !important;
+}
+
+/* Glassmorphism Header */
+.glass-nav {
+  background: var(--bg-nav);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hero Background con degradado */
+.hero-bg {
+  background: linear-gradient(135deg, rgba(248, 249, 250, 0.94) 0%, rgba(241, 245, 249, 0.92) 100%), 
+              url('https://images.unsplash.com/photo-1510936111840-65e151ad71bb?auto=format&fit=crop&q=75&fm=webp&w=1920') center/cover;
+}
+
+/* ==============================================================
+   ANIMACIONES PRINCIPALES
+   ============================================================== */
+
+/* Ecualizador Audio en Vivo */
+@keyframes eqBounce {
+  0%, 100% { height: 4px; }
+  50% { height: 18px; }
+}
+.animate-eq-1 { animation: eqBounce 0.75s ease-in-out infinite; }
+.animate-eq-2 { animation: eqBounce 1.05s ease-in-out infinite 0.2s; }
+.animate-eq-3 { animation: eqBounce 0.65s ease-in-out infinite 0.35s; }
+.animate-eq-4 { animation: eqBounce 0.95s ease-in-out infinite 0.1s; }
+
+/* Transición fluida para capítulos bíblicos */
+@keyframes bibleFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.bible-fade-transition {
+  animation: bibleFadeIn 0.35s ease-out forwards;
+}
+
+/* Transición fluida para cambio de secciones */
+@keyframes sectionFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section-fade {
+  animation: sectionFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Notificaciones Toast flotantes */
+@keyframes toastSlideIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes toastSlideOut {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(16px) scale(0.96); }
+}
+.toast-animate-in {
+  animation: toastSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.toast-animate-out {
+  animation: toastSlideOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Skeleton Screens Shimmer para Carga Fluida */
+@keyframes skeletonShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton-shimmer {
+  background: linear-gradient(90deg, rgba(203, 213, 225, 0.4) 25%, rgba(241, 245, 249, 0.8) 50%, rgba(203, 213, 225, 0.4) 75%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.8s ease-in-out infinite;
+}
+html.dark .skeleton-shimmer {
+  background: linear-gradient(90deg, rgba(30, 45, 84, 0.4) 25%, rgba(45, 68, 128, 0.6) 50%, rgba(30, 45, 84, 0.4) 75%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.8s ease-in-out infinite;
+}
+
+/* Resaltado interactivo de versículos */
+.verse-highlight {
+  background-color: rgba(254, 240, 138, 0.45) !important;
+  border-color: rgba(234, 179, 8, 0.8) !important;
+  box-shadow: 0 0 15px rgba(234, 179, 8, 0.15);
+}
+
+/* Scrollbars personalizados */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-yellow);
+}
+
+/* Control de Secciones Principales */
+.main-section {
+  min-height: 80vh;
+  transition: opacity 0.3s ease;
+}
+.main-section.hidden {
+  display: none !important;
+}
+
+/* ==============================================================
+   MEJORA DE CONTRASTE Y TIPOGRAFÍA WCAG AAA PARA MODO CLARO
+   Garantiza lectura cómoda bajo luz solar y para adultos mayores
+   ============================================================== */
+html:not(.dark) .text-slate-500 {
+  color: #334155 !important; /* slate-700 para alto contraste */
+}
+html:not(.dark) .text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+}
+html:not(.dark) .text-slate-600 {
+  color: #1e293b !important; /* slate-800 */
+}
+/* Marca ámbar/amarilla: AAA sobre fondo claro (UI-01 / UI-16) */
+html:not(.dark) .text-amber-500,
+html:not(.dark) .text-yellow-500,
+html:not(.dark) .hover\:text-amber-500:hover {
+  color: #92400e !important; /* amber-800 ~7:1 sobre blanco */
+}
+html:not(.dark) .text-amber-600 {
+  color: #78350f !important;
+}
+html:not(.dark) input::placeholder,
+html:not(.dark) textarea::placeholder {
+  color: #334155 !important; /* slate-700 */
+  opacity: 1;
+}
+/* Focus visible global (UI-04) */
+:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+}
+html:not(.dark) h1, 
+html:not(.dark) h2, 
+html:not(.dark) h3, 
+html:not(.dark) h4 {
+  font-weight: 800 !important;
+}
+
